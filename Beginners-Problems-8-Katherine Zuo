@@ -1,0 +1,106 @@
+import random
+
+def guess_number():
+    number_to_guess = random.randint(1, 100)
+    number_of_tries = 0
+    guessed_correctly = False
+
+    print("Guess the number between 1 and 100!")
+
+    while not guessed_correctly:
+        user_guess = int(input("Enter your guess: "))
+        number_of_tries += 1
+
+        if user_guess < number_to_guess:
+            print("Your guess was too low.")
+        elif user_guess > number_to_guess:
+            print("Your guess was too high.")
+        else:
+            guessed_correctly = True
+            print(f"Congratulations! You guessed the number in {number_of_tries} tries.")
+
+guess_number()
+
+
+
+def calculate_fare(start_stop, end_stop):
+    base_fare = 5.00
+    fare_per_stop = 2.50
+
+    number_of_stops = abs(end_stop - start_stop)
+
+    total_fare = base_fare + (fare_per_stop * number_of_stops)
+
+    return total_fare
+
+start_stop = int(input("What number stop are you at? "))
+end_stop = int(input("What is the stop you want to go to? "))
+
+fare = calculate_fare(start_stop, end_stop)
+
+print(f"The fare from Stop {start_stop} to Stop {end_stop} is ${fare:.2f}")
+
+
+
+import re
+
+def check_password_strength(password):
+    score = 0
+
+    if len(password) > 7:
+        score += 1
+
+    if re.search(r'[A-Z]', password):
+        score += 1
+
+    if re.search(r'[a-z]', password):
+        score += 1
+
+    if re.search(r'[0-9]', password):
+        score += 1
+
+    if re.search(r'[\W_]', password):
+        score += 1
+
+    if score == 5:
+        strength = "strong"
+    elif score >= 3:
+        strength = "moderately strong"
+    else:
+        strength = "weak"
+
+    return strength
+
+password = input("Enter your password: ")
+
+password_strength = check_password_strength(password)
+
+print(f"The password is {password_strength}.")
+
+
+
+import random
+
+def letter_to_number(letter):
+    return ord(letter.lower()) - ord('a') + 1
+
+def guess_the_number():
+    number_to_guess = random.randint(1, 26)
+    number_of_guesses = 0
+    guessed_correctly = False
+
+    print("Guess the number (through letters) between 'a' and 'z'!")
+
+    while not guessed_correctly:
+        user_guess = input("Enter a letter: ").strip()
+        number_of_guesses += 1
+
+        guessed_number = letter_to_number(user_guess)
+
+        if guessed_number == number_to_guess:
+            guessed_correctly = True
+            print(f"You guessed {number_of_guesses} times.")
+        else:
+            print("Try again!")
+
+guess_the_number()
